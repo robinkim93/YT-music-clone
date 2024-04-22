@@ -1,7 +1,7 @@
 import React from "react";
 
-function page(props) {
+function Page(props: any) {
   return <div>playlist/[{props.searchParams.list}]</div>;
 }
 
-export default page;
+export default Page;
