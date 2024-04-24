@@ -1,25 +1,40 @@
 "use client";
 
-import React from "react";
+import React, { MouseEventHandler } from "react";
 import Image from "next/image";
 import { RxHamburgerMenu } from "react-icons/rx";
 import { useRouter } from "next/navigation";
 import IconButton from "./IconButton";
+import { IoCloseOutline } from "react-icons/io5";
 
-const Logo = () => {
+const Logo = ({
+  isDrawerOpen = false,
+  onClickCloseButton = () => {},
+}: {
+  isDrawerOpen?: boolean;
+  onClickCloseButton?: MouseEventHandler;
+}) => {
   const { push } = useRouter();
 
   const onClickLogo = () => {
     push("/");
   };
+
   const onClickIcon = () => {};
 
   return (
     <section className="flex items-center gap-3">
-      <IconButton
-        icon={<RxHamburgerMenu size={24} />}
-        onClickIcon={onClickIcon}
-      />
+      {isDrawerOpen ? (
+        <IconButton
+          icon={<IoCloseOutline size={24} />}
+          onClickIcon={onClickCloseButton}
+        />
+      ) : (
+        <IconButton
+          icon={<RxHamburgerMenu size={24} />}
+          onClickIcon={onClickIcon}
+        />
+      )}
       <div className="cursor-pointer" onClick={onClickLogo}>
         <Image
           width={100}
