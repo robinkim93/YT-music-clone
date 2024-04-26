@@ -7,13 +7,15 @@ import { useRouter } from "next/navigation";
 import IconButton from "./IconButton";
 import { IoCloseOutline } from "react-icons/io5";
 
+interface LogoProps {
+  isDrawerOpen?: boolean;
+  onClickCloseButton?: MouseEventHandler;
+}
+
 const Logo = ({
   isDrawerOpen = false,
   onClickCloseButton = () => {},
-}: {
-  isDrawerOpen?: boolean;
-  onClickCloseButton?: MouseEventHandler;
-}) => {
+}: LogoProps) => {
   const { push } = useRouter();
 
   const onClickLogo = () => {
