@@ -14,6 +14,17 @@ export function getRandomInt(min: number, max: number) {
 }
 
 export const getRandomElementFromArray = (arr: any[]) => {
-  const arrLength = arr.length;
+  const arrLength = arr?.length;
   return arr[getRandomInt(0, arrLength - 1)];
+};
+
+export const chunkArray = (arr: any[], chunkSize: number) => {
+  const resultArray = [];
+
+  for (let i = 0; i < arr.length; i += chunkSize) {
+    const chunk = arr.slice(i, i + chunkSize);
+    resultArray.push(chunk);
+  }
+
+  return resultArray;
 };

@@ -10,19 +10,23 @@ import { FiPlay } from "react-icons/fi";
 import IconButton from "./elements/IconButton";
 
 interface PlayListCardProps {
-  playlist: Playlist;
+  playlist: any;
 }
 
 const PlayListCard = ({ playlist }: PlayListCardProps) => {
-  const { id, owner, playlistName, songList } = playlist;
+  const { id, owner = "", playlistName = "", songList = [] } = playlist;
 
   const { push } = useRouter();
 
-  const songListLength = songList.length;
-  const imageSrc = getRandomElementFromArray(songList).imageSrc;
+  const songListLength = songList?.length;
+  const imageSrc = getRandomElementFromArray(songList)?.imageSrc;
 
   const onClickThumbnail = () => {
     push(`/playlist?list=${id}`);
+  };
+
+  const onClickPlayButton = () => {
+    push(`/error`);
   };
 
   return (
@@ -32,12 +36,15 @@ const PlayListCard = ({ playlist }: PlayListCardProps) => {
         onClick={onClickThumbnail}
       >
         <Image src={imageSrc} fill alt="thumbnail" className="object-cover " />
-        <div className="relative block group-hover:block bg-gradient-to-b from-[rgba(0,0,0,0.7)] top-0 w-full h-[136px]">
-          <div className="absolute top-4 right-4">
+        <div className="relative hidden group-hover:block bg-gradient-to-b from-[rgba(0,0,0,0.7)] top-0 w-full h-[136px]">
+          <div className="absolute top-4 right-4 z-10">
             <IconButton icon={<MdMoreVert size={20} />} />
           </div>
-          <div className="absolute bottom-4 right-4">
-            <FiPlay size={20} />
+          <div
+            onClick={onClickPlayButton}
+            className="z-10 absolute bottom-4 right-4 flex items-center justify-center transform-gpu transition-transform hover:scale-110 bg-[rgba(0,0,0,0.7)] w-[45px] h-[45px] rounded-full pl-1 hover:bg-[rgba(0,0,0,0.9)]"
+          >
+            <FiPlay size={22} color="red " />
           </div>
         </div>
       </section>
