@@ -28,3 +28,7 @@ export const chunkArray = (arr: any[], chunkSize: number) => {
 
   return resultArray;
 };
+
+export const generateRandomHex = () => {
+  return "#" + ((Math.random() * 0xffffff) << 0).toString(16).padStart(6, "0");
+};

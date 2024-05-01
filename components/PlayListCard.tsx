@@ -30,12 +30,17 @@ const PlayListCard = ({ playlist }: PlayListCardProps) => {
   };
 
   return (
-    <article className="mt-1">
+    <article className="mt-1 ">
       <section
         className="relative h-[136px] cursor-pointer group"
         onClick={onClickThumbnail}
       >
-        <Image src={imageSrc} fill alt="thumbnail" className="object-cover " />
+        <Image
+          src={imageSrc}
+          fill
+          alt="thumbnail"
+          className="object-cover rounded-md"
+        />
         <div className="relative hidden group-hover:block bg-gradient-to-b from-[rgba(0,0,0,0.7)] top-0 w-full h-[136px]">
           <div className="absolute top-4 right-4 z-10">
             <IconButton icon={<MdMoreVert size={20} />} />
