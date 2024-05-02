@@ -22,7 +22,7 @@ const Category = () => {
 
   return (
     <div className="flex flex-row w-full justify-between items-center gap-4 flex-wrap">
-      <ul className="flex flex-row gap-max-w-full overflow-x-auto">
+      <ul className="flex flex-row gap-2 max-w-full overflow-x-auto">
         {libraryCategory.map((item) => {
           return (
             <li

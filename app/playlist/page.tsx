@@ -1,4 +1,7 @@
 import HeaderBgChanger from "@/components/HeaderBgChanger";
+import PagePadding from "@/components/PagePadding";
+import PlayListHead from "@/components/PlayListHead";
+import SongCardRowExpand from "@/components/SongCardRowExpand";
 import { getPlaylistById } from "@/lib/dummyData";
 import { getRandomElementFromArray } from "@/lib/utils";
 import { permanentRedirect } from "next/navigation";
@@ -17,10 +20,17 @@ async function Page(props: PlayListPageProps) {
   if (!playlist) permanentRedirect("/");
 
   return (
-    <div>
+    <PagePadding>
       <HeaderBgChanger imageSrc={imageSrc} />
-      playlist/[{props.searchParams.list}]
-    </div>
+      <div className="mt-20"></div>
+      <PlayListHead playList={playlist} />
+      <div className="mt-20"></div>
+      <section className="flex flex-col gap-2">
+        {playlist.songList.map((song, index) => (
+          <SongCardRowExpand song={song} key={index} />
+        ))}
+      </section>
+    </PagePadding>
   );
 }
 
