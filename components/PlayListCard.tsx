@@ -4,7 +4,7 @@ import { getRandomElementFromArray } from "@/lib/utils";
 import { Playlist } from "@/types";
 import Image from "next/image";
 import { useRouter } from "next/navigation";
-import React from "react";
+import React, { MouseEvent } from "react";
 import { MdMoreVert } from "react-icons/md";
 import { FiPlay } from "react-icons/fi";
 import IconButton from "./elements/IconButton";
