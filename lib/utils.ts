@@ -32,3 +32,11 @@ export const chunkArray = (arr: any[], chunkSize: number) => {
 export const generateRandomHex = () => {
   return "#" + ((Math.random() * 0xffffff) << 0).toString(16).padStart(6, "0");
 };
+
+export const shuffleArray = (array: any[]) => {
+  for (let i = array.length - 1; i > 0; i--) {
+    const j = Math.floor(Math.random() * (i + 1));
+    [array[i], array[j]] = [array[j], array[i]];
+  }
+  return array;
+};

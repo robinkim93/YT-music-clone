@@ -8,6 +8,7 @@ import React from "react";
 import { MdMoreVert } from "react-icons/md";
 import { FiPlay } from "react-icons/fi";
 import IconButton from "./elements/IconButton";
+import { usePlayerState } from "@/hooks/usePlayerState";
 
 interface PlayListCardProps {
   playlist: any;
@@ -16,6 +17,7 @@ interface PlayListCardProps {
 const PlayListCard = ({ playlist }: PlayListCardProps) => {
   const { id, owner = "", playlistName = "", songList = [] } = playlist;
 
+  const { addSongList } = usePlayerState();
   const { push } = useRouter();
 
   const songListLength = songList?.length;
@@ -25,8 +27,9 @@ const PlayListCard = ({ playlist }: PlayListCardProps) => {
     push(`/playlist?list=${id}`);
   };
 
-  const onClickPlayButton = () => {
-    push(`/error`);
+  const onClickPlayButton = (e: MouseEvent) => {
+    e.stopPropagation();
+    addSongList(songList);
   };
 
   return (
@@ -49,7 +52,7 @@ const PlayListCard = ({ playlist }: PlayListCardProps) => {
             onClick={onClickPlayButton}
             className="z-10 absolute bottom-4 right-4 flex items-center justify-center transform-gpu transition-transform hover:scale-110 bg-[rgba(0,0,0,0.7)] w-[45px] h-[45px] rounded-full pl-1 hover:bg-[rgba(0,0,0,0.9)]"
           >
-            <FiPlay size={22} color="red " />
+            <FiPlay size={22} color="red" />
           </div>
         </div>
       </section>

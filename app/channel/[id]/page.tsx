@@ -9,6 +9,7 @@ import { getRandomElementFromArray } from "@/lib/utils";
 import { permanentRedirect } from "next/navigation";
 import React from "react";
 import { FiMusic, FiShuffle } from "react-icons/fi";
+import ChannelHead from "../components/ChannelHead";
 
 interface ChannelPageProps {
   params: {
@@ -26,26 +27,7 @@ async function Page(props: ChannelPageProps) {
     <PagePadding>
       <HeaderBgChanger imageSrc={imageSrc} />
       <div className="mt-[150px]"></div>
-      <section>
-        <div className="text-[28px] font-bold">{channel.name}</div>
-        <section className="lg:hidden mt-4">
-          <div>
-            <DarkButton
-              label="구독중 4.18만"
-              className="w-[230px] flex justify-center"
-            />
-          </div>
-          <div className="flex flex-row gap-4 mt-4">
-            <WhiteButton icon={<FiShuffle size={16} />} label="셔플" />
-            <WhiteButton icon={<FiMusic size={16} />} label="뮤직 스테이션" />
-          </div>
-        </section>
-        <div className="hidden lg:flex flex-row gap-4 mt-4 text-[14px] items-center">
-          <WhiteButton icon={<FiShuffle size={16} />} label="셔플" />
-          <WhiteButton icon={<FiMusic size={16} />} label="뮤직 스테이션" />
-          <DarkButton label="구독중 4.18만" className="justify-center" />
-        </div>
-      </section>
+      <ChannelHead channel={channel} />
       <section className="mt-[80px]">
         <div className="text-[28px] font-bold">노래</div>
         <div className="mt-[20px]">

@@ -8,13 +8,19 @@ import IconButton from "./elements/IconButton";
 import WhiteButton from "./elements/WhiteButton";
 import { FiFolderPlus, FiMoreVertical, FiPlay } from "react-icons/fi";
 import DarkButton from "./elements/DarkButton";
+import { usePlayerState } from "@/hooks/usePlayerState";
 
 interface PlayListHeadProps {
   playList: Playlist;
 }
 
 const PlayListHead = ({ playList }: PlayListHeadProps) => {
+  const { addSongList } = usePlayerState();
   const { id, owner, songList, playlistName } = playList;
+
+  const onClickPlay = () => {
+    addSongList(songList);
+  };
 
   const randomImageSrc = getRandomElementFromArray(songList).imageSrc;
 
@@ -35,6 +41,7 @@ const PlayListHead = ({ playList }: PlayListHeadProps) => {
               icon={<FiPlay size={20} />}
               label="재생"
               className="w-[85px]"
+              onClick={onClickPlay}
             />
             <DarkButton
               icon={<FiFolderPlus size={20} />}
@@ -50,6 +57,7 @@ const PlayListHead = ({ playList }: PlayListHeadProps) => {
           icon={<FiPlay size={20} />}
           label="재생"
           className="w-[85px]"
+          onClick={onClickPlay}
         />
         <DarkButton
           icon={<FiFolderPlus size={20} />}

@@ -1,4 +1,5 @@
 "use client";
+import { usePlayerState } from "@/hooks/usePlayerState";
 import { Playlist } from "@/types";
 import React from "react";
 import { IoMdPlayCircle } from "react-icons/io";
@@ -9,8 +10,10 @@ interface PlayListNavProps {
 }
 
 const PlayListNav = ({ playlist }: PlayListNavProps) => {
+  const { addSongList } = usePlayerState();
+
   const onClickPlayButton = () => {
-    return;
+    addSongList(playlist.songList);
   };
 
   return (

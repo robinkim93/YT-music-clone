@@ -11,12 +11,15 @@ import {
 } from "react-icons/fi";
 import IconButton from "./elements/IconButton";
 import { useRouter } from "next/navigation";
+import { usePlayerState } from "@/hooks/usePlayerState";
 
 interface SongCardRowExpandProps {
   song: Song;
 }
 
 const SongCardRowExpand = ({ song }: SongCardRowExpandProps) => {
+  const { addSongList } = usePlayerState();
+
   const { channel, channelId, name, imageSrc } = song;
   const { push } = useRouter();
 
@@ -24,11 +27,18 @@ const SongCardRowExpand = ({ song }: SongCardRowExpandProps) => {
     push(`/channel/${channelId}`);
   };
 
+  const onClickPlay = () => {
+    addSongList([song]);
+  };
+
   return (
     <article className="flex flex-row gap-4 h-[48px] w-full items-center relative group">
       <div className="relative w-[48px] h-[48px]">
         <Image src={imageSrc} alt="img" fill className="object-cover" />
-        <section className="hidden absolute flex-row justify-center items-center top-0 w-[48px] h-[48px] group-hover:flex bg-black cursor-pointer">
+        <section
+          className="hidden absolute flex-row justify-center items-center top-0 w-[48px] h-[48px] group-hover:flex bg-black cursor-pointer"
+          onClick={onClickPlay}
+        >
           <FiPlayCircle />
         </section>
       </div>
